@@ -1,15 +1,12 @@
+import { getProductById } from "@/src/services/productService";
 import Image from "next/image";
 
 export default async function Slug({ params }) {
-  const res = await fetch(
-    process.env.PRODUCT_API_URL + "/products/" + params.slug
-  );
-
-  const data = await res.json();
+  const data = await getProductById(params.slug);
 
   console.log(data);
 
-  if (res.status === 404) {
+  if (!data) {
     return "404 Not Found";
   }
 
@@ -28,4 +25,3 @@ export default async function Slug({ params }) {
     </div>
   );
 }
-//20.5

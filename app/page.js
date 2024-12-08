@@ -1,8 +1,9 @@
+import getAllProducts from "@/src/services/productService";
 import Image from "next/image";
 
 export default async function Home() {
-  const res = await fetch(process.env.PRODUCT_API_URL + "/products?limit=9");
-  const data = await res.json();
+  
+  const data = await getAllProducts()
 
   console.log(data);
 
